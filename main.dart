@@ -50,8 +50,9 @@ class _NewsListState extends State<NewsList> {
         final List<Article> articles = [];
         Map<String, dynamic> jsonData = json.decode(response.body);
 
-        for (var item in jsonData["articles"]) {
-          articles.add(Article.fromJson(item));
+
+        for (var item in jsonData["articles"] as List) {
+        articles.add(Article(author: item['author']??'', title: item['title']??'', description: item['description']??'', url: item['url']??'', urlToImage: item['urlToImage']??'', publishedAt: item['publishedAt']??'', content: item['content']??''));
         }
 
         return articles;
